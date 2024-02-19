@@ -15,10 +15,13 @@ const Header = () => {
           <Link href='#'>
             <span className='text-black'>How to play?</span>
           </Link>
-          <Link href='#'>
+          <Link href='/leaderboard'>
+            <span className='text-black'>Leaderboard</span>
+          </Link>
+          <Link href='about'>
             <span className='text-black'>About Us</span>
           </Link>
-          <Link href='#'>
+          <Link href='/profile'>
             <span className='text-black'>Profile</span>
           </Link>
         </div>

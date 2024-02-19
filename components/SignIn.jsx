@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/app/firebase/config';
 import { useRouter } from 'next/navigation';
+import logo from '../assets/logo.png'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -27,7 +29,8 @@ const SignIn = () => {
   return (
     <div className="h-full flex justify-center items-center">
         <div className="rounded-2xl bg-slate-100 h-96 w-96 flex items-center flex-col gap-8 justify-center">
-            <form className="flex flex-col px-4 gap-2">
+            <form className="flex flex-col px-4 gap-4">
+            <Image src={logo} width={196} height={64} />
                 <input
                     type='email'
                     placeholder='Email'
