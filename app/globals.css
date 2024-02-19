@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --blue1: #5F7EEC;
+  --blue2: #4D3AC1;
+  --blue3: #381177;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,5 +29,60 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+.overlay {
+  position: absolute;
+  background-image: url('../assets/overlay.jpg');
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game {
+  margin-top: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-gap: 4px;
+}
+
+
+.square-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+}
+
+.square:hover {
+  background-color: #eee;
+}
+.square {
+  width: 100px;
+  height: 100px;
+  transition: transform 0.5s ease; /* CSS transition for smooth animation */
+}
+
+.animateSquare {
+  animation: pulse 0.5s infinite alternate; /* CSS animation for pulsating effect */
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
   }
 }
