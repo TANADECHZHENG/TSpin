@@ -80,20 +80,22 @@ const Field = () => {
 
         // Update board and check for winner
         setBoard(newBoard);
-        setTimeout(() => {
-        setBoard(rotatedBoard)
         setXIsNext(!xIsNext)
-        setWinner(calculateWinner(rotatedBoard))
+        setTimeout(() => {
+          setBoard(rotatedBoard)
+          setWinner(calculateWinner(rotatedBoard))
+          checkDraw(rotatedBoard)
         , 3000
       });
 
-          // Check for draw
-        if (!winner && isBoardFull(newBoard)) {
-          setWinner('Draw');
-        }
     };
 
-
+    const checkDraw = (board) => {
+        // Check for draw
+      if (!winner && isBoardFull(board)) {
+        setWinner('Draw');
+      }
+    }
 
         const renderSquare = i => {
             return (

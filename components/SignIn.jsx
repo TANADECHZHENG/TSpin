@@ -15,15 +15,25 @@ const SignIn = () => {
     const router = useRouter();
 
     const handleSignIn = async () => {
+        if (!email || !password) {
+            console.error("Email and password are required.");
+            document.getElementById('feedback').innerHTML = "Email and password are required.";
+            return;
+        }
         try {
             const res = await signInWithEmailAndPassword(email, password);
+            console.log("Sign-in successful:", res);
             console.log({res});
             setEmail('')
             setPassword('')
-            router.push('/lobby')
+            // router.push('/lobby')
         }catch (err) {
-            console.error(err);
-            document.getElementById('feedback').innerHTML = err;
+            console.error("Firebase Authentication Error:", err.code, err.message);
+            if (err.code === 'auth/invalid-email' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+                document.getElementById('feedback').innerHTML = "Invalid email or password.";
+            } else {
+                document.getElementById('feedback').innerHTML = "An error occurred while signing in. Please try again later.";
+            }
         }
     };
 
