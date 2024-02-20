@@ -26,7 +26,7 @@ const SignIn = () => {
             console.log({res});
             setEmail('')
             setPassword('')
-            // router.push('/lobby')
+            router.push('/lobby')
         }catch (err) {
             console.error("Firebase Authentication Error:", err.code, err.message);
             if (err.code === 'auth/invalid-email' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
