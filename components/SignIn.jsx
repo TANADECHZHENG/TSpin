@@ -16,13 +16,14 @@ const SignIn = () => {
 
     const handleSignIn = async () => {
         try {
-            const res= await signInWithEmailAndPassword(email, password);
+            const res = await signInWithEmailAndPassword(email, password);
             console.log({res});
             setEmail('')
             setPassword('')
             router.push('/lobby')
         }catch (err) {
             console.error(err);
+            document.getElementById('feedback').innerHTML = err;
         }
     };
 
@@ -46,6 +47,7 @@ const SignIn = () => {
                     className="text-black border-solid"
                 />
             </form>
+            <p id='feedback'></p>
             <button
                 onClick={handleSignIn}
                 className="flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl" type="submit">

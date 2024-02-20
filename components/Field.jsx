@@ -83,9 +83,9 @@ const Field = () => {
         setTimeout(() => {
         setBoard(rotatedBoard)
         setXIsNext(!xIsNext)
+        setWinner(calculateWinner(rotatedBoard))
         , 3000
       });
-      setWinner(calculateWinner(newBoard))
 
           // Check for draw
         if (!winner && isBoardFull(newBoard)) {
