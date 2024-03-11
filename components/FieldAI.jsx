@@ -2,10 +2,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import Button from './Button';
+import Link from 'next/link';
 
 function Square({ value, onClick }) {
     return (
-      <button className="square" onClick={onClick}>
+      <button className="square rounded-2xl" onClick={onClick}>
         {value}
       </button>
     );
@@ -22,7 +23,7 @@ const FieldAI = () => {
             let randomIndex;
         do {
             randomIndex = Math.floor(Math.random() * board.length);
-        } while (board[randomIndex] !== null);
+        } while (board[randomIndex] !== null && !winner);
                 const newBoard = rotateBoard([...board]);
                 newBoard[randomIndex] = 'O'; // Assuming 'O' represents the computer's move
                 setTimeout(() => {
@@ -33,9 +34,9 @@ const FieldAI = () => {
                         setXIsNext(true);
                         setWinner(calculateWinner(rotatedBoard));
                         checkDraw(rotatedBoard);
-                    }, 3000)
+                    }, 2000)
                 }
-                , 4000);
+                , 3500);
             
         }
     }, [xIsNext]);
@@ -93,7 +94,7 @@ const FieldAI = () => {
   };
 
       const handleClick = i => {
-        if (winner || board[i]) return;
+        if (winner || board[i] || !xIsNext) return;
 
         const newBoard = [...board];
         newBoard[i] = xIsNext ? 'X' : 'O';
@@ -110,8 +111,6 @@ const FieldAI = () => {
           checkDraw(rotatedBoard)
         }
         , 2000);
-
-        
     };
 
 
@@ -144,7 +143,7 @@ const FieldAI = () => {
       return (
         <div className="board">
           {board.map((square, i) => (
-            <div key={i} className="square-container text-black font-extrabold text-5xl mix-blend-luminosity">
+            <div key={i} className="square-container rounded-2xl text-black font-extrabold text-5xl mix-blend-luminosity">
               <div className='absolute opacity-40 -z-10'>
                {direction[i]}
               </div>
@@ -167,16 +166,24 @@ const FieldAI = () => {
 
     return (
       <div className="game">
+          <div className='flex justify-center items-center mb-4'>
+            <h1 className='font-bold text-center text-yellow-100 text-4xl'>
+              {status}
+            </h1>
+          </div>
         <div className="game-board">
           <div>{renderBoard()}</div>
         </div>
-        <div className="game-info">
-          <div>{status}</div>
+        <div className="game-info mt-4">
           {winner && (
-              <>
-                <button onClick={resetGame}>Retry</button>
-                <Button text='return to Lobby' link='./lobby'/>
-              </>
+               <div className='flex justify-center gap-x-10'>
+                 <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={resetGame}>
+                   Retry
+                 </button>
+                 <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
+                   <Link href='/lobby'>Back to Lobby</Link>
+                 </button>
+               </div>
           )}
         </div>
       </div>

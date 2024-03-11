@@ -48,10 +48,6 @@ body {
   align-items: center;
 }
 
-.game {
-  margin-top: 20px;
-}
-
 .board {
   display: grid;
   grid-template-columns: repeat(4, 100px);
@@ -68,6 +64,7 @@ body {
 
 .square:hover {
   background-color: #eee;
+  mix-blend-mode: multiply;
 }
 .square {
   width: 100px;

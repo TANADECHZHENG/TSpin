@@ -9,7 +9,7 @@ import { ref, onValue, update, get, remove } from 'firebase/database';
 function Square({ value, onClick }) {
     return (
       <button
-        className="square"
+        className="square rounded-2xl"
         onClick={onClick}
       >
         {value}
@@ -213,7 +213,7 @@ const Field = ({ code, playerX, playerO }) => {
       return (
         <div className="board">
           {board.map((square, i) => (
-            <div key={i} className="square-container text-black font-extrabold text-5xl mix-blend-luminosity">
+            <div key={i} className="square-container rounded-2xl text-black font-extrabold text-5xl mix-blend-luminosity">
               <div className='absolute opacity-40 -z-10'>
                {direction[i]}
               </div>
@@ -241,7 +241,7 @@ const Field = ({ code, playerX, playerO }) => {
     };
 
     const leaveGame = () => {
-
+        
     };
 
     return (
@@ -254,7 +254,7 @@ const Field = ({ code, playerX, playerO }) => {
           {game.winner && (
               <>
                 <button onClick={resetGame}>Retry</button>
-                <button onClick={leaveGame}>return to Lobby</button>
+                <button onClick={leaveGame}>Back to Lobby</button>
               </>
           )}
         </div>

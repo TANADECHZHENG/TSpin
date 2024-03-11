@@ -8,7 +8,7 @@ export default function Page() {
         <div className="flex justify-center p-10 items-center h-screen w-full">
             <div className="flex-row flex gap-48 justify-center items-start ">
                 <CardPlayer name={auth.currentUser.displayName}/>
-                <div className="bg-slate-500 w-[450px] h-[480px] flex items-center justify-center">
+                <div className="bg-slate-500 w-[500px] h-[560px] flex items-center justify-center">
                     <FieldAI />
                 </div>
                 <CardPlayer name='Computer'/>
