@@ -72,12 +72,17 @@ export default function Page() {
     }
 
     return(
-        <div className="w-full justify-center items-center flex py-6">
-            <div className="bg-slate-200 flex flex-col justify-center items-center gap-y-10 p-4 w-[960px] h-[600px]">
-                <button onClick={createRoom}>Create Room</button>
-                <button onClick={playAI}>Play with bot</button>
-                <input type='text' value={code} onChange={(e) => setCode(e.target.value)}/>
-                <button onClick={joinRoom}>Join Room</button>
+        <div className="w-full h-full justify-center items-center flex py-6">
+            <div className="border-4 border-[#FFFFFFBB] p-2 w-full mx-2 mid:mx-10 big:w-[960px] rounded-[75px]">
+                <div className="flex flex-col justify-center items-center gap-10 p-4 py-20 w-full h-full rounded-[75px] border-4 border-[#FFFFFFBB]">
+                    <button className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" onClick={createRoom}>Create Room</button>
+                    <button className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" onClick={playAI}>Play with bot</button>
+                    <div className="flex flex-col">
+                        <label className="text-lg">Room Code:</label>
+                        <input  className="p-2 rounded shadow" type='text' value={code} onChange={(e) => setCode(e.target.value)}/>
+                        <button className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 mt-2 rounded-2xl shadow-lg border border-black" onClick={joinRoom}>Join Room</button>
+                    </div>
+                </div>
             </div>
         </div>
     )
