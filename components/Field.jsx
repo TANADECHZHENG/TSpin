@@ -1,22 +1,51 @@
 'use client'
-import Link from 'next/link';
 import React from 'react'
-import { useState } from 'react';
-import Button from './Button';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { auth, database } from '@/app/firebase/config';
+import { ref, onValue, update, remove } from 'firebase/database';
 
 function Square({ value, onClick }) {
     return (
-      <button className="square" onClick={onClick}>
+      <button
+        className="square"
+        onClick={onClick}
+      >
         {value}
       </button>
     );
-  }
+}
 
-const Field = () => {
-    const initialBoard = Array(16).fill(null);
+const Field = ({ code }) => {
+    const initialBoard = Array(16).fill('');
     const [board, setBoard] = useState(initialBoard);
     const [xIsNext, setXIsNext] = useState(true);
+    const [game, setGame] = useState([]);
     const [winner, setWinner] = useState(null);
+    const [player, setPlayer] = useState('');
+
+    const gameRef = ref(database, `rooms/${code}`);
+    // const router = useRouter();
+
+    useEffect(() => {
+      const updateData = async () => {
+        try {
+          // Listen for changes in the database and update the board accordingly
+          onValue(gameRef , (snapshot) => {
+            const gameState = snapshot.val();
+            setGame(gameState);
+            setBoard(gameState.board);
+            setWinner(gameState.winner);
+            setPlayer(auth.currentUser.displayName === gameState.playerX ? 'X' : 'O')
+          });
+        } catch (error){
+          console.log(error)
+        }
+
+      }
+      updateData();
+    }, []);
 
     const calculateWinner = squares => {
       const lines = [
@@ -41,6 +70,9 @@ const Field = () => {
         ) {
           return squares[a];
         }
+        if (!winner && isBoardFull(board)) {
+          setWinner('Draw');
+        }
       }
       return null;
     };
@@ -54,7 +86,7 @@ const Field = () => {
 
     const rotateBoard = squares => {
     const newBoard = squares.slice(); // Copy the original board
-    
+
     // Rotate values according to patterns1
     for (let i = 0; i < patterns1.length; i++) {
         newBoard[patterns1[i + 1]] = squares[patterns1[i]];
@@ -64,55 +96,71 @@ const Field = () => {
     for (let j = 0; j < patterns2.length; j++) {
         newBoard[patterns2[j + 1]] = squares[patterns2[j]];
     }
-
     return newBoard;
-
   };
 
-      const handleClick = i => {
-        if (winner || board[i]) return;
+      const handleClick = async (i) => {
+        if (winner || board[i] ) return;
 
         const newBoard = [...board];
-        newBoard[i] = xIsNext ? 'X' : 'O';
-      
+        newBoard[i] = player;
+        console.log(newBoard[i]);
+
         // Rotate board
         const rotatedBoard = rotateBoard(newBoard);
 
         // Update board and check for winner
+        update(gameRef, {
+          board: newBoard,
+          turn: xIsNext ? 'X' : 'O',
+        })
+
         setBoard(newBoard);
-        setXIsNext(!xIsNext)
+        console.log(initialBoard);
         setTimeout(() => {
-          setBoard(rotatedBoard)
-          setWinner(calculateWinner(rotatedBoard))
-          checkDraw(rotatedBoard)
-        , 3000
-      });
+          setBoard(rotatedBoard);
+          setXIsNext(!xIsNext);
+          console.log(rotatedBoard);
+          update(gameRef, {
+            board: rotatedBoard,
+            winner: calculateWinner(rotatedBoard),
+          })
+      }, 2000);
 
     };
 
-    const checkDraw = (board) => {
-        // Check for draw
-      if (!winner && isBoardFull(board)) {
-        setWinner('Draw');
-      }
-    }
 
-        const renderSquare = i => {
-            return (
-              <Square
-                key={i}
-                value={board[i]}
-                onClick={() => handleClick(i)}
-              />
-            );
-          };
+    const direction = ['→', '→', '→', '↓',
+                       '↑', '→', '↓', '↓',
+                       '↑', '↑', '←', '↓',
+                       '↑', '←', '←', '←',
+                      ];
+
+    const renderSquare = i => {
+        return (
+          <Square
+            key={i}
+            value={board[i]}
+            onClick={() => handleClick(i)}
+            direction={direction[i]}
+          />
+        );
+      };
 
 
     const renderBoard = () => {
+      if (!Array.isArray(board)) {
+        console.error("Board is not an array:", board);
+        return null; // or return a fallback UI
+      }
+      
       return (
         <div className="board">
           {board.map((square, i) => (
-            <div key={i} className="square-container text-black font-extrabold text-5xl">
+            <div key={i} className="square-container text-black font-extrabold text-5xl mix-blend-luminosity">
+              <div className='absolute opacity-40 -z-10'>
+               {direction[i]}
+              </div>
               {renderSquare(i)}
             </div>
           ))}
@@ -125,10 +173,23 @@ const Field = () => {
       : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
     const resetGame = () => {
+      update(gameRef, {
+        board: Array(16).fill(''),
+        turn: 'X',
+        winner: ''
+      })
       setBoard(initialBoard);
       setXIsNext(true);
       setWinner(null);
     };
+
+    // const leaveGame = () => {
+    //   router.back();
+    //   if (){
+        
+    //   }
+    //   remove(gameRef);
+    // };
 
     return (
       <div className="game">
@@ -140,7 +201,7 @@ const Field = () => {
           {winner && (
               <>
                 <button onClick={resetGame}>Retry</button>
-                <Button text='return to Lobby' link='./lobby'/>
+                {/* <button onClick={leaveGame}>return to Lobby</button> */}
               </>
           )}
         </div>

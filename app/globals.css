@@ -72,15 +72,3 @@ body {
   transition: transform 0.5s ease; /* CSS transition for smooth animation */
 }
 
-.animateSquare {
-  animation: pulse 0.5s infinite alternate; /* CSS animation for pulsating effect */
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}

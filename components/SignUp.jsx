@@ -1,7 +1,9 @@
 'use client'
 import { useState } from 'react'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { auth } from '@/app/firebase/config';
+import { getDatabase, ref, off, set } from "firebase/database";
+import  { updateProfile } from "firebase/auth";
+import { app, auth } from '@/app/firebase/config';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import logo from '../assets/logo.png'
@@ -9,21 +11,49 @@ import Image from 'next/image';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
+
+    const db = getDatabase(app);
     const router = useRouter();
+
+
+    const pushUser = () => {
+        const userRef = ref(db, `Scoreboard/${auth.currentUser.uid}`);
+        set(userRef,
+            {
+                score: 0,
+                win: 0,
+                lose: 0,
+                draw: 0,
+                username: username,
+                email: email,
+            }
+        )
+        off(userRef);
+        router.push('/sign-in')
+    }
+
 
     const handleSignUp = async () => {
         try {
-            const res= await createUserWithEmailAndPassword(email, password);
+            const res = await createUserWithEmailAndPassword(email, password);
             console.log({res});
-            setEmail('')
-            setPassword('')
-            router.push('/sign-in')
+            if (res){
+                updateProfile(auth.currentUser, { displayName: username })
+                pushUser()
+            } else {
+                throw new Error("Sign Up failed");
+            }
         } catch(err) {
             console.error(err);
+            document.getElementById('feedback').innerHTML = "Email have been used.";
         }
+        setEmail('')
+        setPassword('')
+        setUsername('')
     };
 
   return (
@@ -39,6 +69,13 @@ const SignIn = () => {
                     className="text-black border-solid"
                 />
                 <input
+                    type='text'
+                    placeholder='Username'
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="text-black border-solid"
+                />
+                <input
                     type='password'
                     placeholder='Password'
                     value={password}
@@ -46,6 +83,7 @@ const SignIn = () => {
                     className="text-black border-solid"
                 />
             </form>
+            <p className='' id='feedback'></p>
             <button
                 onClick={handleSignUp}
                 className="flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl" type="submit">

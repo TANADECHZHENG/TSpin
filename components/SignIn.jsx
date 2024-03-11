@@ -20,21 +20,21 @@ const SignIn = () => {
             document.getElementById('feedback').innerHTML = "Email and password are required.";
             return;
         }
+
         try {
             const res = await signInWithEmailAndPassword(email, password);
-            console.log("Sign-in successful:", res);
-            console.log({res});
-            setEmail('')
-            setPassword('')
-            router.push('/lobby')
-        }catch (err) {
-            console.error("Firebase Authentication Error:", err.code, err.message);
-            if (err.code === 'auth/invalid-email' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
-                document.getElementById('feedback').innerHTML = "Invalid email or password.";
+            if (res) {
+                console.log("Sign-in successful:", res);
+                router.push('/lobby');
             } else {
-                document.getElementById('feedback').innerHTML = "An error occurred while signing in. Please try again later.";
+                throw new Error("Authentication failed");
             }
+        } catch (err) {
+            console.error("Firebase Authentication Error:", err.code, err.message);
+            document.getElementById('feedback').innerHTML = "Invalid email or password.";
         }
+        setEmail('');
+        setPassword('');
     };
 
   return (
@@ -48,6 +48,7 @@ const SignIn = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="text-black border-solid"
+                    required
                 />
                 <input
                     type='password'
@@ -55,6 +56,7 @@ const SignIn = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="text-black border-solid"
+                    required
                 />
             </form>
             <p id='feedback'></p>

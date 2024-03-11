@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { AuthContextProvider } from '@/app/AuthContext'
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,9 +13,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="h-screen overlay w-full relative">
-            {children}
-        </div>
+        <AuthContextProvider>
+          <div className="h-screen overlay w-full relative">
+              {children}
+          </div>
+        </AuthContextProvider>
       </body>
     </html>
   );

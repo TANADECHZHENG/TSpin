@@ -9,31 +9,39 @@ const Leaderboard = () => {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const leaderboardRef = ref(db, 'Scoreboard');
+    useEffect(() => {
+      const leaderboardRef = ref(db, 'Scoreboard');
 
-    const fetchData = () => {
+      const fetchData = () => {
         onValue(leaderboardRef, (snapshot) => {
-            try {
-                const leaderboardData = snapshot.val();
-                if (leaderboardData) {
-                    const sortedData = Object.entries(leaderboardData).sort((a, b) => b[1].score - a[1].score);
-                    setLeaderboardData(sortedData);
-                }
-                setError(null);
-            } catch (error) {
-                console.error("Error fetching leaderboard data:", error);
-                setError("Error fetching leaderboard data");
+          try {
+            const leaderboardData = snapshot.val();
+            if (leaderboardData) {
+              const sortedData = Object.entries(leaderboardData).map(([key, value]) => ({
+                id: key,
+                userData: value
+              })).sort((a, b) => b.userData.score - a.userData.score);
+              console.log(sortedData)
+              setLeaderboardData(sortedData);
             }
+            setError(null);
+          } catch (error) {
+            console.error("Error fetching leaderboard data:", error);
+            setError("Error fetching leaderboard data");
+          }
         }, (error) => {
-            console.error("Error retrieving data:", error);
-            setError("Error retrieving data");
+          console.error("Error retrieving data:", error);
+          setError("Error retrieving data");
         });
-    };
+      };
 
-    fetchData();
-    return () => {off(leaderboardRef);}
-  }, []);
+      fetchData();
+
+      // Clean up the listener when the component unmounts
+      return () => {
+        off(leaderboardRef);
+      };
+    }, []); // Empty dependency array to run this effect only once
 
   return (
     <div className='flex flex-col justify-center items-center my-10'>
@@ -48,11 +56,11 @@ const Leaderboard = () => {
           </tr>
         </thead>
         <tbody>
-          {leaderboardData.map(([key, data], index) => (
-            <tr key={key} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
+          {leaderboardData.map((data, index) => (
+            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
               <td className='border border-gray-400 p-2'>{index + 1}</td>
-              <td className='border border-gray-400 p-2'>{data.username}</td>
-              <td className='border border-gray-400 p-2'>{data.score}</td>
+              <td className='border border-gray-400 p-2'>{data.userData.username}</td>
+              <td className='border border-gray-400 p-2'>{data.userData.score}</td>
             </tr>
           ))}
         </tbody>
