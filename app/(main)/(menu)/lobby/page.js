@@ -68,7 +68,7 @@ export default function Page() {
 
 
     const playAI = async () => {
-        router.push(`/game`);
+        router.push(`/computer`);
     }
 
     return(
