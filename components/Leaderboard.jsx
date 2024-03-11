@@ -49,20 +49,20 @@ const Leaderboard = () => {
         <div className="flex flex-col justify-center items-center gap-2 p-4 py-8 w-full h-full rounded-[75px] border-4 border-[#FFFFFFBB]">
           <h1 className='text-center text-[42px] text-white flex-none'>Scoreboard</h1>
           <div className='flex grow justify-center bg-gray-100 flex-col p-4 rounded-3xl w-full'>
-            <table className='border-collapse border border-gray-400'>
+            <table className='border-collapse border-0 border-gray-400'>
               <thead>
                 <tr className='bg-gray-200'>
-                  <th className='border border-gray-400 p-2'>Rank</th>
-                  <th className='border border-gray-400 p-2'>Player</th>
-                  <th className='border border-gray-400 p-2'>Score</th>
+                  <th className='border-gray-400 p-2'>Rank</th>
+                  <th className='border-gray-400 p-2'>Player</th>
+                  <th className='border-gray-400 p-2'>Score</th>
                 </tr>
               </thead>
               <tbody>
                 {leaderboardData.map((data, index) => (
                   <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
-                    <td className='border border-gray-400 p-2'>{index + 1}</td>
-                    <td className='border border-gray-400 p-2'>{data.userData.username}</td>
-                    <td className='border border-gray-400 p-2'>{data.userData.score}</td>
+                    <td className='border-gray-400 p-2'>{index + 1}</td>
+                    <td className='border-gray-400 p-2'>{data.userData.username}</td>
+                    <td className='border-gray-400 p-2'>{data.userData.score}</td>
                   </tr>
                 ))}
               </tbody>

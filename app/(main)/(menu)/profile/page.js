@@ -26,7 +26,7 @@ export default function Page() {
         <div className="w-full h-full justify-center items-center flex py-6">
             <div className="border-4 border-[#FFFFFFBB] p-2 w-full mx-2 mid:mx-10 big:w-[960px] rounded-[75px]">
                 <div className="flex flex-col justify-center items-center gap-2 p-4 py-8 w-full h-full rounded-[75px] border-4 border-[#FFFFFFBB]">
-                    <div className="flex flex-row p-5 gap-8 justify-center items-center">
+                    <div className="flex flex-col mid:flex-row p-5 gap-8 justify-center items-center w-full">
                         <ProfileCard user={userData.username}/>
                         <Statistic
                         score={userData.score}
