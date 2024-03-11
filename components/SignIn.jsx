@@ -39,31 +39,35 @@ const SignIn = () => {
 
   return (
     <div className="h-full flex justify-center items-center">
-        <div className="rounded-2xl bg-slate-100 h-96 w-96 flex items-center flex-col gap-8 justify-center">
+        <div className="rounded-2xl bg-slate-100 flex items-center flex-col gap-8 justify-center py-6 px-2 mid:px-10 big:px-20">
             <form className="flex flex-col px-4 gap-4">
             <Image src={logo} width={196} height={64} />
+            <div className='flex flex-col flex-fill'>
+                <label>Email</label>
                 <input
                     type='email'
-                    placeholder='Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="text-black border-solid"
+                    className="text-black border-solid p-2 rounded shadow"
                     required
                 />
+            </div>
+            <div className='flex flex-col'>
+                <label>Password</label>
                 <input
                     type='password'
-                    placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="text-black border-solid"
+                    className="text-black border-solid p-2 rounded shadow"
                     required
                 />
+            </div>
             </form>
-            <p id='feedback'></p>
+            <p className='text-red-500' id='feedback'></p>
             <button
                 onClick={handleSignIn}
-                className="flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl" type="submit">
-                    Sign In
+                className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" type="submit">
+                    Log In
             </button>
             <h2 className='text-black'>Doesn't have account right? go <Link href='/sign-up' className='text-blue-500 decoration-solid'>Sign Up</Link></h2>
         </div>

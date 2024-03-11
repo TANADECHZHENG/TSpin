@@ -44,27 +44,31 @@ const Leaderboard = () => {
     }, []); // Empty dependency array to run this effect only once
 
   return (
-    <div className='flex flex-col justify-center items-center my-10'>
-      <div className='flex justify-center bg-gray-100 flex-col p-4 rounded-3xl w-3/5'>
-      <div className='font-bold mt-3 mb-6'><h1 className='text-center text-[36px]'>Leaderboard</h1></div>
-      <table className='border-collapse border border-gray-400'>
-        <thead>
-          <tr className='bg-gray-200'>
-            <th className='border border-gray-400 p-2'>Rank</th>
-            <th className='border border-gray-400 p-2'>Player</th>
-            <th className='border border-gray-400 p-2'>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboardData.map((data, index) => (
-            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
-              <td className='border border-gray-400 p-2'>{index + 1}</td>
-              <td className='border border-gray-400 p-2'>{data.userData.username}</td>
-              <td className='border border-gray-400 p-2'>{data.userData.score}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-full h-full justify-center items-center flex py-6">
+      <div className="border-4 border-[#FFFFFFBB] p-2 w-full mx-2 mid:mx-10 big:w-[960px] rounded-[75px]">
+        <div className="flex flex-col justify-center items-center gap-2 p-4 py-8 w-full h-full rounded-[75px] border-4 border-[#FFFFFFBB]">
+          <h1 className='text-center text-[42px] text-white flex-none'>Scoreboard</h1>
+          <div className='flex grow justify-center bg-gray-100 flex-col p-4 rounded-3xl w-full'>
+            <table className='border-collapse border border-gray-400'>
+              <thead>
+                <tr className='bg-gray-200'>
+                  <th className='border border-gray-400 p-2'>Rank</th>
+                  <th className='border border-gray-400 p-2'>Player</th>
+                  <th className='border border-gray-400 p-2'>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {leaderboardData.map((data, index) => (
+                  <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
+                    <td className='border border-gray-400 p-2'>{index + 1}</td>
+                    <td className='border border-gray-400 p-2'>{data.userData.username}</td>
+                    <td className='border border-gray-400 p-2'>{data.userData.score}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

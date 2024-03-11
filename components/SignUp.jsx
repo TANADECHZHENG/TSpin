@@ -58,36 +58,42 @@ const SignIn = () => {
 
   return (
     <div className="h-full flex justify-center items-center">
-        <div className="rounded-2xl bg-slate-100 h-96 w-96 flex items-center flex-col gap-8 justify-center">
+        <div className="rounded-2xl bg-slate-100 flex px-2 mid:px-10 big:px-20 py-6 items-center flex-col gap-8 justify-center">
             <form className="flex flex-col px-4 gap-4">
                 <Image src={logo} width={196} height={64}/>
+                <div className='flex flex-col flex-fill'>
+                <label>Email</label>
                 <input
                     type='email'
-                    placeholder='Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="text-black border-solid"
+                    className="text-black border-solid p-2 rounded shadow"
                 />
+            </div>
+            <div className='flex flex-col flex-fill'>
+                <label>Username</label>
                 <input
                     type='text'
-                    placeholder='Username'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="text-black border-solid"
+                    className="text-black border-solid p-2 rounded shadow"
                 />
+            </div>
+            <div className='flex flex-col flex-fill'>
+                <label>Password</label>
                 <input
                     type='password'
-                    placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="text-black border-solid"
+                    className="text-black border-solid p-2 rounded shadow"
                 />
+            </div>
             </form>
             <p className='' id='feedback'></p>
             <button
                 onClick={handleSignUp}
-                className="flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl" type="submit">
-                    Sign Up
+                className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" type="submit">
+                    Register
             </button>
             <h2 className='text-black'>
                 Already have account? go <Link href='/sign-in' className='text-blue-500 decoration-solid'>Sign in</Link>

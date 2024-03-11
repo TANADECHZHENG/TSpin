@@ -2,8 +2,8 @@ import React from 'react'
 
 const CardPlayer = ({name}) => {
   return (
-    <div className="rounded-3xl bg-slate-200 w-64 h-72 flex justify-center pt-4">
-        <h1 className='text-center'>{name}</h1>
+    <div className="rounded-3xl bg-slate-200 w-64 h-72 flex justify-center items-center pt-4">
+        <h1 className='text-center text-xl'>{name}</h1>
     </div>
   )
 }
