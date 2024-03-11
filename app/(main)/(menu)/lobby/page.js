@@ -78,7 +78,7 @@ export default function Page() {
                     <button className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" onClick={createRoom}>Create Room</button>
                     <button className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" onClick={playAI}>Play with bot</button>
                     <div className="flex flex-col">
-                        <label className="text-lg">Room Code:</label>
+                        <label className="text-lg text-white">Room Code:</label>
                         <input  className="p-2 rounded shadow" type='text' value={code} onChange={(e) => setCode(e.target.value)}/>
                         <button className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 mt-2 rounded-2xl shadow-lg border border-black" onClick={joinRoom}>Join Room</button>
                     </div>
