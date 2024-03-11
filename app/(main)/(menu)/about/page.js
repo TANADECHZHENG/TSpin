@@ -5,9 +5,9 @@ import img3 from '@/assets/member/64070157.jpg'
 export default function Page() {
     return (
         <div className="w-full flex justify-center items-center flex-row h-full gap-24">
-            <CreditCard name='Kongpop' image={img1}/>
-            <CreditCard name='Pairat' image={img2}/>
-            <CreditCard name='Tanadech' image={img3}/>
+            <CreditCard name='นายก้องภพ อ่อนทอง' image={img1} code='64070004'/>
+            <CreditCard name='นายไพรัช ชื่นชม' image={img2} code='64070081'/>
+            <CreditCard name='นายธนเดช เจิ้ง' image={img3} code='64070157'/>
         </div>
     )
 }
