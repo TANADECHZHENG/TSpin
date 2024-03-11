@@ -70,7 +70,7 @@ export default function Page( {params} ) {
 
     return (
         <div className="flex flex-col justify-center p-10 items-center h-screen w-full">
-            <h2 className="font-bold">
+            <h2 className="font-bold text-2xl">
                 Roomcode: {params.id}
             </h2>
             <div className="flex-row flex gap-48 justify-center items-start ">
@@ -87,13 +87,13 @@ export default function Page( {params} ) {
             {!boardData.turn ?
                 <div className="flex gap-20 mt-10">
                     <button
-                        className="font-bold bg-yellow-500 text-white px-8 py-3 rounded-3xl hover:bg-yellow-400 "
+                        className="font-bold bg-yellow-500 text-white px-8 py-3 rounded-3xl hover:bg-yellow-400 shadow-lg"
                         disabled={boardData.playerO && boardData.playerX && isHost ? false : true}
                         onClick={startGame}>
                         Start Game
                     </button>
                     <button
-                        className="font-bold bg-yellow-500 text-white px-8 py-3 rounded-3xl hover:bg-yellow-400 "
+                        className="font-bold bg-yellow-500 text-white px-8 py-3 rounded-3xl hover:bg-yellow-400 shadow-lg"
                         onClick={leaveRoom}>
                         Exit Room
                     </button>

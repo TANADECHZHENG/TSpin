@@ -2,7 +2,7 @@ import React from 'react'
 
 const Statistic = ({score, win, lose, draw}) => {
   return (
-    <div className="rounded-3xl bg-slate-200 flex flex-col items-center h-80 w-64 py-4">
+    <div className="rounded-3xl bg-slate-200 flex flex-col justify-center items-center h-80 w-64 py-4">
       <h1>Statistic</h1>
       <ul>
         <li>
