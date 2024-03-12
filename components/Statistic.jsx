@@ -28,23 +28,23 @@ const Statistic = ({score, win, lose, draw}) => {
             Win Rate
           </div>
           <div>
-            {win / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100 + "%" }
+            {(win / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100).toFixed(2) + "%" }
           </div>
         </div>
       </div>
       <div className='py-4 flex flex-row text-xl w-full'>
         <div className='flex flex-col py-2 items-center min-w-fit' style={{flex: win + lose + draw == 0 ? 1 : win / (win + lose + draw) * 100}}>
-          <div className='text-2xl text-green-500'>{win / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100 + "%" }</div>
+          <div className='text-2xl text-green-500'>{(win / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100).toFixed(2) + "%" }</div>
           <div className='bg-green-500 h-[10px] w-full'></div>
           <div>Win {win}</div>
         </div>
         <div className='flex flex-col py-2 items-center min-w-fit' style={{flex: win + lose + draw == 0 ? 1 : draw / (win + lose + draw) * 100}}>
-          <div className='text-2xl text-gray-600'>{draw / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100 + "%" }</div>
+          <div className='text-2xl text-gray-600'>{(draw / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100).toFixed(2) + "%" }</div>
           <div className='bg-gray-300 h-[10px] w-full'></div>
           <div>Draw {draw}</div>
         </div>
         <div className='flex flex-col py-2 items-center min-w-fit' style={{flex: win + lose + draw == 0 ? 1 : lose / (win + lose + draw) * 100}}>
-          <div className='text-2xl text-red-500'>{lose / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100 + "%" }</div>
+          <div className='text-2xl text-red-500'>{(lose / (win + lose + draw == 0 ? 1 : win + lose + draw) * 100).toFixed(2) + "%" }</div>
           <div className='bg-red-500 h-[10px] w-full'></div>
           <div>Lose {lose}</div>
         </div>

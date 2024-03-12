@@ -75,7 +75,7 @@ export default function Page( {params} ) {
             </h2>
             <div className="flex-row flex gap-48 justify-center items-start ">
                 <CardPlayer name={(!boardData.playerX) ? 'Waiting for a player...' : boardData.playerX}/>
-                <div className="bg-slate-500 w-[450px] h-[480px] flex items-center justify-center">
+                <div className="bg-slate-500 w-[500px] h-[560px] flex items-center justify-center">
                     {
                         boardData.turn ?
                         <Field code={params.id} playerO={boardData.challenger} playerX={boardData.host}/> :

@@ -241,7 +241,7 @@ const Field = ({ code, playerX, playerO }) => {
     };
 
     const leaveGame = () => {
-        
+        router.back()
     };
 
     return (
@@ -260,7 +260,7 @@ const Field = ({ code, playerX, playerO }) => {
                <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={resetGame}>
                  Retry
                </button>
-               <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={leaveGame}>
                  Back to Lobby
                </button>
              </div>
