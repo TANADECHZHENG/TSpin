@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Page(){
     return (
         <div className="h-screen w-full p-4 flex justify-center items-center flex-wrap">
-            <Image src={logo} className='w-64 h-auto mr-24' alt={logo}/>
-            <div className="w-1/3 flex justify-center items-center flex-col">
+            <Image src={logo} className='w-64 h-auto big:mr-24' alt={logo}/>
+            <div className="big:w-1/3 w-full flex justify-center items-center flex-col">
                 <h1 className="font-bold text-5xl text-center mb-10">
                     How to Play?
                 </h1>
@@ -17,10 +17,10 @@ export default function Page(){
                 </p>
             <div className="justify-center flex items-center mt-10 gap-20">
                 <button className='flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
-                    <Link href='/' />Go Back
+                    <Link href='/'>Go Back</Link>
                 </button>
                 <button className='flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
-                    <Link href='/computer' />Go Play with bot
+                    <Link href='/computer'>About Tspin</Link>
                 </button>
             </div>
             </div>

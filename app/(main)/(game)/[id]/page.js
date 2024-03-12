@@ -70,7 +70,7 @@ export default function Page( {params} ) {
 
     return (
         <div className="flex flex-col justify-center p-10 items-center h-screen w-full">
-            <h2 className="font-bold text-2xl">
+            <h2 className="font-bold text-2xl mb-6">
                 Roomcode: {params.id}
             </h2>
             <div className="flex-row flex gap-48 justify-center items-start ">

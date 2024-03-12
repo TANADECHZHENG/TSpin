@@ -160,7 +160,7 @@ const Field = ({ code, playerX, playerO }) => {
   };
 
       const handleClick = async (i) => {
-        if (winner || board[i] || player !== game.turn) return;
+        if (game.winner || board[i] || player !== game.turn) return;
 
         const newBoard = [...board];
         newBoard[i] = player;
@@ -246,16 +246,24 @@ const Field = ({ code, playerX, playerO }) => {
 
     return (
       <div className="game">
+         <div className='flex justify-center items-center mb-4'>
+            <h1 className='font-bold text-center text-yellow-100 text-4xl'>
+              {status}
+            </h1>
+          </div>
         <div className="game-board">
           <div>{renderBoard()}</div>
         </div>
-        <div className="game-info">
-          <div>{status}</div>
+        <div className="game-info mt-4">
           {game.winner && (
-              <>
-                <button onClick={resetGame}>Retry</button>
-                <button onClick={leaveGame}>Back to Lobby</button>
-              </>
+               <div className='flex justify-center gap-x-10'>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={resetGame}>
+                 Retry
+               </button>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
+                 Back to Lobby
+               </button>
+             </div>
           )}
         </div>
       </div>
