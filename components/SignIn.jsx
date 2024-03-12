@@ -39,7 +39,7 @@ const SignIn = () => {
 
   return (
     <div className="h-full flex justify-center items-center">
-        <div className="rounded-2xl bg-slate-100 flex items-center flex-col gap-8 justify-center py-6 px-2 mid:px-10 big:px-20">
+        <div className="rounded-2xl bg-slate-100 flex items-center max-w-[500px] flex-col gap-8 justify-center py-6 px-2 mid:px-10 big:px-20">
             <form className="flex flex-col px-4 gap-4">
             <Image src={logo} width={196} height={64} />
             <div className='flex flex-col flex-fill'>

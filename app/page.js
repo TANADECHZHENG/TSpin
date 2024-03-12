@@ -30,7 +30,7 @@ export default function Home() {
             <h1 className='text-black font-medium text-xl'>Tic Tac Toe 4x4 Game</h1>
             <div className='flex flex-row gap-16 m-4'>
               <span>
-                <Link href='#' className='font-semibold text-yellow-100 text-lg'>How to play?</Link>
+                <Link href='/howtoplay' className='font-semibold text-yellow-100 text-lg'>How to play?</Link>
               </span>
               <span>
                 <Link href='#' className='font-semibold text-yellow-100 text-lg'>About us</Link>

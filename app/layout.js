@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <AuthContextProvider>
-          <div className="h-screen overlay w-full relative">
+          <div className="overlay w-full relative">
               {children}
           </div>
         </AuthContextProvider>
