@@ -50,10 +50,15 @@ body {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
+  grid-template-columns: repeat(4, 70px);
   grid-gap: 4px;
 }
 
+@media (min-width: 992px) {
+  .board {
+    grid-template-columns: repeat(4, 100px);
+  }
+}
 
 .square-container {
   display: flex;
@@ -67,8 +72,8 @@ body {
   mix-blend-mode: multiply;
 }
 .square {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   transition: transform 0.5s ease; /* CSS transition for smooth animation */
 }
 

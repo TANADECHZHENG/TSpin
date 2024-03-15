@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 function Square({ value, onClick }) {
     return (
-      <button className="square rounded-2xl" onClick={onClick}>
+      <button className="square rounded-2xl big:w-[100px] big:h-[100px]" onClick={onClick}>
         {value}
       </button>
     );
@@ -143,7 +143,7 @@ const FieldAI = () => {
       return (
         <div className="board">
           {board.map((square, i) => (
-            <div key={i} className="square-container rounded-2xl text-black font-extrabold text-5xl mix-blend-luminosity">
+            <div key={i} className="square-container rounded-md big:rounded-2xl text-black font-extrabold text-2xl big:text-5xl mix-blend-luminosity w-full h-full">
               <div className='absolute opacity-40 -z-10'>
                {direction[i]}
               </div>
@@ -165,22 +165,22 @@ const FieldAI = () => {
     };
 
     return (
-      <div className="game">
+      <div className="flex justify-center items-center w-3/4 big:w-full bg-slate-500 p-8 rounded-3xl flex-col">
           <div className='flex justify-center items-center mb-4'>
             <h1 className='font-bold text-center text-yellow-100 text-4xl'>
               {status}
             </h1>
           </div>
-        <div className="game-board">
+        <div className="board">
           <div>{renderBoard()}</div>
         </div>
         <div className="game-info mt-4">
           {winner && (
                <div className='flex justify-center gap-x-10'>
-                 <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={resetGame}>
+                 <button className='text-md big:text-xl flex justify-center items-center bg-yellow-400 px-6 big:px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={resetGame}>
                    Retry
                  </button>
-                 <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
+                 <button className='text-md big:text-xl flex justify-center items-center bg-yellow-400 px-6 big:px-12 py-2 rounded-2xl shadow-lg border border-black'>
                    <Link href='/lobby'>Back to Lobby</Link>
                  </button>
                </div>

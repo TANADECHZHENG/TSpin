@@ -66,10 +66,10 @@ const SignIn = () => {
             <p className='text-red-500' id='feedback'></p>
             <button
                 onClick={handleSignIn}
-                className="text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black" type="submit">
+                className="text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200" type="submit">
                     Log In
             </button>
-            <h2 className='text-black'>Doesn't have account right? go <Link href='/sign-up' className='text-blue-500 decoration-solid'>Sign Up</Link></h2>
+            <h2 className='text-black'>Doesn't have account right? go <Link href='/sign-up' className='text-blue-600 decoration-solid hover:text-blue-400'>Sign Up</Link></h2>
         </div>
     </div>
   )

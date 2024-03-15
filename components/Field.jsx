@@ -9,7 +9,7 @@ import { ref, onValue, update, get, remove } from 'firebase/database';
 function Square({ value, onClick }) {
     return (
       <button
-        className="square rounded-2xl"
+        className="square rounded-2xl big:w-[100px] big:h-[100px]"
         onClick={onClick}
       >
         {value}
@@ -51,7 +51,7 @@ const Field = ({ code, playerX, playerO }) => {
             
                 // console.log("Host data:", hostData);
                 // console.log("Challenger data:", challengerData);
-            
+
                 setStatX(hostData || {});
                 setStatO(challengerData || {});
               } catch (error) {
@@ -71,39 +71,42 @@ const Field = ({ code, playerX, playerO }) => {
 
 
     useEffect(() => {
-  if (game.winner) {
-    if (game.winner === 'X') {
-      update(ref(database, `Scoreboard/${playerX}`), {
-        score: parseInt(statX.score) + 3,
-        win: parseInt(statX.win) + 1,
-      });
-      update(ref(database, `Scoreboard/${playerO}`), {
-        score: parseInt(statO.score) - 3,
-        lose: parseInt(statO.lose) + 1,
-      });
-      console.log('Xwin');
-    } else if (game.winner === 'O') {
-      update(ref(database, `Scoreboard/${playerO}`), {
-        score: parseInt(statO.score) + 3,
-        win: parseInt(statO.win) + 1,
-      });
-      console.log('Owin');
-      update(ref(database, `Scoreboard/${playerX}`), {
-        score: parseInt(statX.score) - 3,
-        lose: parseInt(statX.lose) + 1,
-      });
-    } else if (game.winner === 'draw') {
-      update(ref(database, `Scoreboard/${playerX}`), {
-        score: parseInt(statX.score) + 1,
-        draw: parseInt(statX.draw) + 1,
-      });
-      update(ref(database, `Scoreboard/${playerO}`), {
-        score: parseInt(statO.score) + 1,
-        draw: parseInt(statO.draw) + 1,
-      });
-      console.log('XO');
-    }
+      const updateScore = async () =>{
+        if (game.winner) {
+          if (game.winner === 'X') {
+            await update(ref(database, `Scoreboard/${playerX}`), {
+              score: parseInt(statX.score) + 3,
+              win: parseInt(statX.win) + 1,
+            });
+            await update(ref(database, `Scoreboard/${playerO}`), {
+              score: parseInt(statO.score) - 3,
+              lose: parseInt(statO.lose) + 1,
+            });
+            console.log('Xwin');
+          } else if (game.winner === 'O') {
+            await update(ref(database, `Scoreboard/${playerO}`), {
+              score: parseInt(statO.score) + 3,
+              win: parseInt(statO.win) + 1,
+            });
+            console.log('Owin');
+            await update(ref(database, `Scoreboard/${playerX}`), {
+              score: parseInt(statX.score) - 3,
+              lose: parseInt(statX.lose) + 1,
+            });
+          } else if (game.winner === 'draw') {
+            await update(ref(database, `Scoreboard/${playerX}`), {
+              score: parseInt(statX.score) + 1,
+              draw: parseInt(statX.draw) + 1,
+            });
+            await update(ref(database, `Scoreboard/${playerO}`), {
+              score: parseInt(statO.score) + 1,
+              draw: parseInt(statO.draw) + 1,
+            });
+            console.log('XO');
+          }
+      }
   }
+  updateScore();
 }, [game.winner]);
 
     const calculateWinner = squares => {
@@ -213,7 +216,7 @@ const Field = ({ code, playerX, playerO }) => {
       return (
         <div className="board">
           {board.map((square, i) => (
-            <div key={i} className="square-container rounded-2xl text-black font-extrabold text-5xl mix-blend-luminosity">
+            <div key={i} className="square-container rounded-md big:rounded-2xl text-black font-extrabold text-2xl big:text-5xl mix-blend-luminosity w-full h-full">
               <div className='absolute opacity-40 -z-10'>
                {direction[i]}
               </div>
@@ -245,22 +248,22 @@ const Field = ({ code, playerX, playerO }) => {
     };
 
     return (
-      <div className="game">
+      <div className="flex justify-center items-center w-3/4 big:w-full bg-slate-500 p-8 rounded-3xl flex-col">
          <div className='flex justify-center items-center mb-4'>
             <h1 className='font-bold text-center text-yellow-100 text-4xl'>
               {status}
             </h1>
           </div>
-        <div className="game-board">
+        <div className="board">
           <div>{renderBoard()}</div>
         </div>
         <div className="game-info mt-4">
           {game.winner && (
                <div className='flex justify-center gap-x-10'>
-               <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={resetGame}>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200' onClick={resetGame}>
                  Retry
                </button>
-               <button className='text-xl flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black' onClick={leaveGame}>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200' onClick={leaveGame}>
                  Back to Lobby
                </button>
              </div>

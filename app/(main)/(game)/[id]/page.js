@@ -69,36 +69,38 @@ export default function Page( {params} ) {
     }
 
     return (
-        <div className="flex flex-col justify-center p-10 items-center h-screen w-full">
-            <h2 className="font-bold text-2xl mb-6">
-                Roomcode: {params.id}
-            </h2>
-            <div className="flex-row flex gap-48 justify-center items-start ">
-                <CardPlayer name={(!boardData.playerX) ? 'Waiting for a player...' : boardData.playerX}/>
-                <div className="bg-slate-500 w-[500px] h-[560px] flex items-center justify-center">
-                    {
-                        boardData.turn ?
-                        <Field code={params.id} playerO={boardData.challenger} playerX={boardData.host}/> :
-                        <JoinRoomPop />
-                    }
-                </div>
-                <CardPlayer name={(!boardData.playerO) ? 'Waiting for a player...' : boardData.playerO}/>
+        <div className="flex justify-center p-10 items-center h-screen w-full">
+            <div className="big:flex-row flex big:gap-24 justify-center flex-col items-center ">
+                <CardPlayer player='X' name={(!boardData.playerX) ? 'Waiting for a player...' : boardData.playerX} color='border-rose-600'/>
+            <div className="flex flex-col justify-center items-center my-10">
+                <h2 className="font-semibold text-5xl mb-6 text-gray-600">
+                    Roomcode: {params.id}
+                </h2>
+                    <div className="w-[500px] flex items-center justify-center">
+                        {
+                            boardData.turn ?
+                            <Field code={params.id} playerO={boardData.challenger} playerX={boardData.host}/> :
+                            <JoinRoomPop />
+                        }
+                    </div>
+                {!boardData.turn ?
+                    <div className="flex gap-20 mt-10">
+                        <button
+                            className="text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200"
+                            disabled={boardData.playerO && boardData.playerX && isHost ? false : true}
+                            onClick={startGame}>
+                            Start Game
+                        </button>
+                        <button
+                            className="text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200"
+                            onClick={leaveRoom}>
+                            Exit Room
+                        </button>
+                    </div>
+                : null}
             </div>
-            {!boardData.turn ?
-                <div className="flex gap-20 mt-10">
-                    <button
-                        className="font-bold bg-yellow-500 text-white px-8 py-3 rounded-3xl hover:bg-yellow-400 shadow-lg"
-                        disabled={boardData.playerO && boardData.playerX && isHost ? false : true}
-                        onClick={startGame}>
-                        Start Game
-                    </button>
-                    <button
-                        className="font-bold bg-yellow-500 text-white px-8 py-3 rounded-3xl hover:bg-yellow-400 shadow-lg"
-                        onClick={leaveRoom}>
-                        Exit Room
-                    </button>
-                </div>
-            : null}
+                <CardPlayer player='O' name={(!boardData.playerO) ? 'Waiting for a player...' : boardData.playerO} color='border-indigo-600'/>
+            </div>
         </div>
     )
 }

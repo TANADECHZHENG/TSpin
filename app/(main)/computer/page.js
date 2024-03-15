@@ -6,12 +6,12 @@ import { auth } from "@/app/firebase/config";
 export default function Page() {
     return (
         <div className="flex justify-center p-10 items-center h-screen w-full">
-            <div className="flex-row flex gap-48 justify-center items-start ">
-                <CardPlayer name={auth.currentUser.displayName}/>
-                <div className="bg-slate-500 w-[500px] h-[560px] flex items-center justify-center">
+            <div className="big:flex-row flex big:gap-24 justify-center flex-col items-center ">
+                <CardPlayer player='X' name={auth.currentUser.displayName} color='border-rose-600'/>
+                <div className="w-[500px] flex items-center justify-center">
                     <FieldAI />
                 </div>
-                <CardPlayer name='Computer'/>
+                <CardPlayer player='O' name='Computer' color='border-indigo-600'/>
             </div>
         </div>
     )
