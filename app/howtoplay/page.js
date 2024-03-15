@@ -16,11 +16,11 @@ export default function Page(){
                      the game will judge after the board has shifted.The player who get any 4 blocks of vertical line, horizontal line and diagonal line  will be winner
                 </p>
             <div className="justify-center flex items-center mt-10 gap-20">
-                <button className='flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
+                <button className='flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200'>
                     <Link href='/'>Go Back</Link>
                 </button>
-                <button className='flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black'>
-                    <Link href='/computer'>About Tspin</Link>
+                <button className='flex justify-center items-center bg-yellow-400 px-12 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200'>
+                    <Link href='/computer'>Go tutorial</Link>
                 </button>
             </div>
             </div>
