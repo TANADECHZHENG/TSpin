@@ -260,10 +260,10 @@ const Field = ({ code, playerX, playerO }) => {
         <div className="game-info mt-4">
           {game.winner && (
                <div className='flex justify-center gap-x-10'>
-               <button className='text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200' onClick={resetGame}>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-6 big:px-12 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200' onClick={resetGame}>
                  Retry
                </button>
-               <button className='text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200' onClick={leaveGame}>
+               <button className='text-xl flex justify-center items-center bg-yellow-400 px-6 big:px-12 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200' onClick={leaveGame}>
                  Back to Lobby
                </button>
              </div>

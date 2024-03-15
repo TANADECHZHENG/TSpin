@@ -86,20 +86,20 @@ export default function Page( {params} ) {
                 {!boardData.turn ?
                     <div className="flex gap-20 mt-10">
                         <button
-                            className="text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200"
+                            className="text-xl flex justify-center items-center bg-yellow-400 px-6 big:px-12 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200"
                             disabled={boardData.playerO && boardData.playerX && isHost ? false : true}
                             onClick={startGame}>
                             Start Game
                         </button>
                         <button
-                            className="text-xl flex justify-center items-center bg-yellow-400 px-16 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200"
+                            className="text-xl flex justify-center items-center bg-yellow-400 px-6 big:px-12 py-2 rounded-2xl shadow-lg border border-black hover:bg-yellow-200"
                             onClick={leaveRoom}>
                             Exit Room
                         </button>
                     </div>
                 : null}
             </div>
-                <CardPlayer player='O' name={(!boardData.playerO) ? 'Waiting for a player...' : boardData.playerO} color='border-indigo-600'/>
+                <CardPlayer player='O' name={(!boardData.playerO) ? 'Waiting for a player...' : boardData.playerO} color='border-sky-600'/>
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ export default function Page() {
                 <div className="w-[500px] flex items-center justify-center">
                     <FieldAI />
                 </div>
-                <CardPlayer player='O' name='Computer' color='border-indigo-600'/>
+                <CardPlayer player='O' name='Computer' color='border-sky-600'/>
             </div>
         </div>
     )
