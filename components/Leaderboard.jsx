@@ -1,16 +1,15 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import app from '@/app/firebase/config';
-import { getDatabase, ref, onValue, off } from "firebase/database";
+import { database } from '@/app/firebase/config';
+import { ref, onValue, off } from "firebase/database";
 
 
 const Leaderboard = () => {
-    const db = getDatabase(app);
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-      const leaderboardRef = ref(db, 'Scoreboard');
+      const leaderboardRef = ref(database, 'Scoreboard');
 
       const fetchData = () => {
         onValue(leaderboardRef, (snapshot) => {
